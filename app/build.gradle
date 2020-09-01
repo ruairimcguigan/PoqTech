@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
+
+    defaultConfig {
+        applicationId "com.demo.poqtech"
+        minSdkVersion 28
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/androidTest/kotlin"
+        debug.java.srcDirs += "src/debug/kotlin"
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+}
+
+dependencies {
+    def appDependencies = rootProject.ext.appUiDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation appDependencies.lifecycleExtensions
+    implementation appDependencies.viewmodelExtensions
+
+    // view
+    implementation appDependencies.appCompat
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.recyclerview
+    implementation appDependencies.recylerviewSwipeRefresh
+    implementation appDependencies.materialDesign
+
+    // networking
+    implementation appDependencies.okHttp
+    implementation appDependencies.okHttpLogging
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitGson
+    implementation appDependencies.gson
+    implementation appDependencies.retroftRx
+
+    // di
+    implementation appDependencies.dagger
+    implementation appDependencies.daggerSupport
+    kapt appDependencies.daggerCompiler
+    kapt appDependencies.daggerProcessor
+
+    // reactive
+    implementation appDependencies.rxJava
+    implementation appDependencies.rxAndroid
+
+    // logging
+    implementation appDependencies.timber
+
+    // testing
+    testImplementation appTestDependencies.junit
+    testImplementation appTestDependencies.androidTestRunner
+
+    testImplementation appTestDependencies.mockitoCore
+    testImplementation appTestDependencies.mockitoInline
+    testImplementation appTestDependencies.androidXCore
+
+    // instrumentation testing
+    androidTestImplementation appTestDependencies.espressoCore
+    androidTestImplementation appTestDependencies.androidXJunit
+    androidTestImplementation appTestDependencies.androidRules
+    androidTestImplementation appTestDependencies.androidXCore
+
+}

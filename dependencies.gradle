@@ -1,0 +1,81 @@
+ext {
+
+    // Android
+    androidBuildToolsVersion = "28.0.3"
+    androidMinSdkVersion = 26
+    androidTargetSdkVersion = 28
+    androidCompileSdkVersion = 28
+    supportLibraryVersion = '26.1.0'
+    appCompatVersion = '1.1.0'
+    recyclerviewVersion = '1.0.0'
+    androidAnnotationsVersion = '21.0.3'
+    lifecycleVersion = '2.2.0'
+    viewmodelVersion = '2.2.0'
+
+    // Libraries
+    rxJavaVersion = '2.2.4'
+    rxAndroidVersion = '2.1.0'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    okHttpVersion = '4.3.1'
+    retrofitVersion = '2.8.1'
+    gsonVersion = '2.8.6'
+    retrofitRxVersion = '2.6.0'
+    daggerVersion = '2.23.2'
+    timberVersion = '4.7.1'
+    constraintLayoutVersion = '2.0.0-beta4'
+    materialDesignVersion = '1.0.0'
+
+    // Testing
+    jUnitVersion = '4.13'
+    espressoVersion = '3.2.0'
+    mockitoVersion = '2.25.1'
+    mockitoInlineVersion = '2.13.0'
+    mockitoAndroidVersion = '2.8.9'
+    androidSupportRunnerVersion = '1.0.0'
+    androidSupportRulesVersion = '1.0.0'
+    androidXCoreVersion = '1.0.0'
+
+
+    appUiDependencies = [
+
+            recyclerview:               "androidx.recyclerview:recyclerview:${recyclerviewVersion}",
+            constraintLayout:           "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            javaxAnnotation:            "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:                "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidAnnotations:         "androidx.annotation:annotation:1.0.0",
+            appCompat:                  "androidx.appcompat:appcompat:${appCompatVersion}",
+            materialDesign:             "com.google.android.material:material:${materialDesignVersion}",
+            timber:                     "com.jakewharton.timber:timber:${timberVersion}",
+            rxJava:                     "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid:                  "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            dagger:                     "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler:             "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerSupport:              "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessor:            "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            daggerAndroid:              "com.google.dagger:dagger-android:${daggerVersion}",
+            okHttp:                     "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLogging:               "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit:                    "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retroftRx:                   "com.squareup.retrofit2:adapter-rxjava2:${retrofitRxVersion}",
+            retrofitGson:                "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            gson:                        "com.google.code.gson:gson:${gsonVersion}",
+            lifecycleExtensions:         "androidx.lifecycle:lifecycle-extensions:${lifecycleVersion}",
+            viewmodelExtensions:         "androidx.lifecycle:lifecycle-viewmodel-ktx:${viewmodelVersion}",
+            recylerviewSwipeRefresh:     "androidx.swiperefreshlayout:swiperefreshlayout:${recyclerviewVersion}"
+    ]
+
+    appTestDependencies = [
+            junit:                      "junit:junit:${jUnitVersion}",
+            mockitoCore:                "org.mockito:mockito-core:${mockitoVersion}",
+            mockitoInline:              "org.mockito:mockito-inline:${mockitoInlineVersion}",
+            supportRunner:              "com.android.support.test:runner:${androidSupportRunnerVersion}",
+            supportRules:               "com.android.support.test:rules:${androidSupportRulesVersion}",
+            mockitoAndroid:             "org.mockito:mockito-android:${mockitoAndroidVersion}",
+            androidTestRunner:          "androidx.test:runner:1.2.0",
+            androidRules:               "androidx.test:rules:1.1.0",
+            espressoCore:               "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            androidXJunit:              "androidx.test.ext:junit:1.1.0",
+            androidXCore:               "androidx.test:core:${androidXCoreVersion}"
+    ]
+}
