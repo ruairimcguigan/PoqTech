@@ -6,7 +6,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
 
-class App : DaggerApplication(){
+open class PoqApp : DaggerApplication(){
 
     override fun onCreate() {
         super.onCreate()
@@ -14,6 +14,8 @@ class App : DaggerApplication(){
             Timber.plant(Timber.DebugTree())
         }
     }
+
+    open fun getBaseUrl() = BuildConfig.BASE_URL
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
         DaggerAppComponent

@@ -35,6 +35,8 @@ ext {
     androidSupportRunnerVersion = '1.0.0'
     androidSupportRulesVersion = '1.0.0'
     androidXCoreVersion = '1.0.0'
+    mockWebServerVersion = '4.6.0'
+    idlingResourceVersion = '1.0.0'
 
 
     appUiDependencies = [
@@ -76,6 +78,8 @@ ext {
             androidRules:               "androidx.test:rules:1.1.0",
             espressoCore:               "com.android.support.test.espresso:espresso-core:${espressoVersion}",
             androidXJunit:              "androidx.test.ext:junit:1.1.0",
-            androidXCore:               "androidx.test:core:${androidXCoreVersion}"
+            androidXCore:               "androidx.test:core:${androidXCoreVersion}",
+            mockWebServer:              "com.squareup.okhttp3:mockwebserver:${mockWebServerVersion}",
+            idlingResource:             "com.jakewharton.espresso:okhttp3-idling-resource:${idlingResourceVersion}"
     ]
 }

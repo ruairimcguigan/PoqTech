@@ -1,7 +1,7 @@
 package com.demo.poqtech.di
 
 import android.app.Application
-import com.demo.poqtech.App
+import com.demo.poqtech.PoqApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -14,7 +14,7 @@ import dagger.android.AndroidInjector
         ActivityModule::class
     ]
 )
-interface AppComponent : AndroidInjector<App> {
+interface AppComponent : AndroidInjector<PoqApp> {
 
     @Component.Builder
     interface Builder {
