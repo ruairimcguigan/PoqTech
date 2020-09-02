@@ -2,14 +2,30 @@ package com.demo.poqtech.ext
 
 import android.content.Context
 import android.view.View
+import android.view.View.*
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
-var View.visible: Boolean
-  get() = visibility == View.VISIBLE
-  set(value) {
-    visibility = if(value) View.VISIBLE else View.INVISIBLE
+fun View.visible() : View {
+  if (visibility != VISIBLE) {
+    visibility = VISIBLE
   }
+  return this
+}
+
+fun View.invisible() : View {
+  if (visibility == VISIBLE) {
+    visibility = INVISIBLE
+  }
+  return this
+}
+
+fun View.gone() : View {
+  if (visibility != GONE) {
+    visibility = GONE
+  }
+  return this
+}
 
 fun View.snack(
   message: String,

@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import com.demo.poqtech.R
 import com.demo.poqtech.data.api.ApiResponse.*
 import com.demo.poqtech.data.model.ReposResponse
+import com.demo.poqtech.ext.gone
+import com.demo.poqtech.ext.invisible
 import com.demo.poqtech.ext.snack
 import com.demo.poqtech.ext.visible
 import dagger.android.AndroidInjection.inject
@@ -31,24 +33,22 @@ class AllReposActivity : AppCompatActivity() {
             when (response) {
                 is Success -> showRepos(response.data as ReposResponse)
                 is Error -> showError(response.error)
-                is Loading -> toggleLoading(true)
+                is Loading -> progressBar.visible()
             }
         })
     }
 
     private fun showRepos(repo: ReposResponse) {
-        toggleLoading(false)
+        progressBar.gone()
+        repoListView.visible()
         adapter.setRepoList(repo)
         repoListView.adapter = adapter
     }
 
     private fun showError(message: String?) {
-        noReposView.visible = true
+        progressBar.gone()
+        noReposView.visible()
         message?.let { root.snack(it) }
-    }
-
-    private fun toggleLoading(isVisible: Boolean) {
-        progressBar.visible = isVisible
     }
 }
 

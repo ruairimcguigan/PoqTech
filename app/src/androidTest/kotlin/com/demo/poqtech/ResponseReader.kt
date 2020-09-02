@@ -1,7 +1,6 @@
-package com.demo.poqtech.util
+package com.demo.poqtech
 
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
-import com.demo.poqtech.PoqTestApp
 import java.io.IOException
 import java.io.InputStreamReader
 
@@ -17,7 +16,9 @@ object ResponseReader {
                 .assets.open(fileName)
 
             val builder = StringBuilder()
-            val reader = InputStreamReader(inputStream, CHARSET)
+            val reader = InputStreamReader(inputStream,
+                CHARSET
+            )
             reader.readLines().forEach {
                 builder.append(it)
             }
