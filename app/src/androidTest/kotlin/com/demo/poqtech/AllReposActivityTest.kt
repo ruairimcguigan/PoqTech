@@ -4,10 +4,9 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.espresso.matcher.ViewMatchers.Visibility.GONE
 import androidx.test.espresso.matcher.ViewMatchers.Visibility.VISIBLE
-import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.demo.poqtech.allrepos.AllReposActivity
@@ -22,6 +21,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
 class AllReposActivityTest {
@@ -61,6 +61,22 @@ class AllReposActivityTest {
         onView(withId(R.id.progressBar)).check(matches(withEffectiveVisibility(VISIBLE)))
         onView(withId(R.id.repoListView)).check(matches(withEffectiveVisibility(VISIBLE)))
         onView(withId(R.id.noReposView)).check(matches(withEffectiveVisibility(GONE)))
+    }
+
+    @Test
+    fun testFailedResponse() {
+        mockWebServer.dispatcher = object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                return MockResponse().throttleBody(1024, 5, TimeUnit.SECONDS)
+            }
+        }
+
+        activityRule.launchActivity(null)
+
+        onView(withId(R.id.progressBar)).check(matches(withEffectiveVisibility(VISIBLE)))
+        onView(withId(R.id.repoListView)).check(matches(withEffectiveVisibility(GONE)))
+        onView(withId(R.id.noReposView)).check(matches(withEffectiveVisibility(VISIBLE)))
+        onView(withId(R.id.noReposView)).check(matches(withText("No repos available")))
     }
 
     @After

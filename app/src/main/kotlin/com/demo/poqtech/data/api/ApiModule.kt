@@ -1,6 +1,10 @@
 package com.demo.poqtech.data.api
 
+import android.app.Application
+import android.content.Context
 import com.demo.poqtech.BuildConfig.BASE_URL
+import com.demo.poqtech.data.connectivity.DefaultNetworkState
+import com.demo.poqtech.data.connectivity.NetworkState
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -38,4 +42,6 @@ class ApiModule {
     fun provideReposService(repoApi: ReposApi): RepoService =
         RepoService(repoApi)
 
+    @Provides
+    fun provideNetworkStateCheck(): NetworkState = DefaultNetworkState()
 }

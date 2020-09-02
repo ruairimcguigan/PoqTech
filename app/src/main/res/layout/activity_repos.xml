@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/noReposView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/grid_0"
+        android:layout_height="@dimen/grid_0"
         android:textSize="@dimen/no_repo_font_size"
         android:textStyle="bold"
         android:visibility="gone"

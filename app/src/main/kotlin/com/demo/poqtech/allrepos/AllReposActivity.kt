@@ -36,6 +36,15 @@ class AllReposActivity : AppCompatActivity() {
                 is Loading -> progressBar.visible()
             }
         })
+
+        viewModel.activeNetworkState.observe(this, Observer { isActive ->
+            if (!isActive){
+                noReposView.visible()
+                noReposView.text = "Please check your connection"
+                repoListView.gone()
+                progressBar.gone()
+            }
+        })
     }
 
     private fun showRepos(repo: ReposResponse) {
@@ -47,6 +56,7 @@ class AllReposActivity : AppCompatActivity() {
 
     private fun showError(message: String?) {
         progressBar.gone()
+        repoListView.gone()
         noReposView.visible()
         message?.let { root.snack(it) }
     }
