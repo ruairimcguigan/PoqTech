@@ -20,7 +20,7 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField "String", "BASE_URL", '"https://api.github.com/orgs/square/repos"'
+            buildConfigField "String", "BASE_URL", '"https://api.github.com/orgs/square/"'
             debuggable true
         }
         release {

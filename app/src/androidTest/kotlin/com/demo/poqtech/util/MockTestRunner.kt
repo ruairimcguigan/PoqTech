@@ -1,8 +1,9 @@
-package com.demo.poqtech
+package com.demo.poqtech.util
 
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
+import com.demo.poqtech.PoqTestApp
 
 class MockTestRunner : AndroidJUnitRunner() {
 

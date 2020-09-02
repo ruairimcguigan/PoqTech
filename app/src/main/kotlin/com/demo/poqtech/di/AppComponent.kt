@@ -2,6 +2,8 @@ package com.demo.poqtech.di
 
 import android.app.Application
 import com.demo.poqtech.PoqApp
+import com.demo.poqtech.data.api.ApiModule
+import com.demo.poqtech.data.repo.RepoModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -11,7 +13,9 @@ import dagger.android.AndroidInjector
     modules = [
         AndroidInjectionModule::class,
         AppModule::class,
-        ActivityModule::class
+        ActivityModule::class,
+        ApiModule::class,
+        RepoModule::class
     ]
 )
 interface AppComponent : AndroidInjector<PoqApp> {
