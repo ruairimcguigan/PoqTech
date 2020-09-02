@@ -78,6 +78,9 @@ dependencies {
     implementation appDependencies.rxJava
     implementation appDependencies.rxAndroid
 
+    // image loading
+    implementation appDependencies.picasso
+
     // logging
     implementation appDependencies.timber
 

@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 import javax.inject.Inject
 
-class ReposViewModel @Inject constructor(
+class AllReposViewModel @Inject constructor(
     private val repo: Repository,
     private val disposable: RxDisposable
 ) : ViewModel() {

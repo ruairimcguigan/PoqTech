@@ -37,7 +37,7 @@ data class RepoResponseItem(
     @SerializedName(value = "deploymentsUrl")
     val deployments_url: String,
     @SerializedName(value = "description")
-    val description: String,
+    val description: String?,
     @SerializedName(value = "disabled")
     val disabled: Boolean,
     @SerializedName(value = "downloadsUrl")
@@ -53,7 +53,7 @@ data class RepoResponseItem(
     @SerializedName(value = "forksUrl")
     val forks_url: String,
     @SerializedName(value = "fullName")
-    val full_name: String,
+    val full_name: String?,
     @SerializedName(value = "gitCommitsUrl")
     val git_commits_url: String,
     @SerializedName(value = "gitsRefUrl")
@@ -103,7 +103,7 @@ data class RepoResponseItem(
     @SerializedName(value = "mirrorUrl")
     val mirror_url: String,
     @SerializedName(value = "name")
-    val name: String,
+    val name: String?,
     @SerializedName(value = "nodeUrl")
     val node_id: String,
     @SerializedName(value = "notificationsUrl")
@@ -129,7 +129,7 @@ data class RepoResponseItem(
     @SerializedName(value = "sshUrl")
     val ssh_url: String,
     @SerializedName(value = "stargazersCount")
-    val stargazers_count: Int,
+    val stargazers_count: Int?,
     @SerializedName(value = "stargazersUrl")
     val stargazers_url: String,
     @SerializedName(value = "statusesUrl")
@@ -151,7 +151,7 @@ data class RepoResponseItem(
     @SerializedName(value = "url")
     val url: String,
     @SerializedName(value = "watchers")
-    val watchers: Int,
+    val watchers: Int?,
     @SerializedName(value = "watchersCount")
     val watchers_count: Int
 ): Parcelable

@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Owner(
     @SerializedName(value = "avatarUrl")
-    val avatar_url: String,
+    val avatar_url: String?,
     @SerializedName(value = "eventsUrl")
     val events_url: String,
     @SerializedName(value = "followersUrl")

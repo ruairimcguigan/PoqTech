@@ -25,6 +25,7 @@ ext {
     timberVersion = '4.7.1'
     constraintLayoutVersion = '2.0.0-beta4'
     materialDesignVersion = '1.0.0'
+    picassoVersion = '2.5.2'
 
     // Testing
     jUnitVersion = '4.13'
@@ -64,7 +65,8 @@ ext {
             gson:                        "com.google.code.gson:gson:${gsonVersion}",
             lifecycleExtensions:         "androidx.lifecycle:lifecycle-extensions:${lifecycleVersion}",
             viewmodelExtensions:         "androidx.lifecycle:lifecycle-viewmodel-ktx:${viewmodelVersion}",
-            recylerviewSwipeRefresh:     "androidx.swiperefreshlayout:swiperefreshlayout:${recyclerviewVersion}"
+            recylerviewSwipeRefresh:     "androidx.swiperefreshlayout:swiperefreshlayout:${recyclerviewVersion}",
+            picasso:                     "com.squareup.picasso:picasso:${picassoVersion}"
     ]
 
     appTestDependencies = [

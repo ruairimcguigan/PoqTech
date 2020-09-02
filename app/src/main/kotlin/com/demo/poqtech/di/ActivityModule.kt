@@ -1,11 +1,11 @@
 package com.demo.poqtech.di
 
-import com.demo.poqtech.allrepos.ReposActivity
+import com.demo.poqtech.allrepos.AllReposActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityModule {
     @ContributesAndroidInjector (modules = [FragmentModule::class])
-    abstract fun contributesMainActivity(): ReposActivity
+    abstract fun contributesMainActivity(): AllReposActivity
 }

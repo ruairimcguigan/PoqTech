@@ -5,40 +5,39 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".allrepos.ReposActivity">
-
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="There seems to be no data" />
+    tools:context=".allrepos.AllReposActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/repoListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="16dp"
+        android:padding="@dimen/grid_16"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="2"
         tools:itemCount="10"
         tools:listitem="@layout/repo_item" />
 
+    <TextView
+        android:id="@+id/noReposView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/no_repo_font_size"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="No repos available" />
+
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/grid_60"
+        android:layout_height="@dimen/grid_60"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

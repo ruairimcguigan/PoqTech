@@ -5,7 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.demo.poqtech.data.api.OkHttpProvider
 import com.demo.poqtech.util.ResponseReader
-import com.demo.poqtech.allrepos.ReposActivity
+import com.demo.poqtech.allrepos.AllReposActivity
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
@@ -20,13 +20,13 @@ import org.junit.Rule
 import org.junit.Test
 
 @RunWith(AndroidJUnit4::class)
-class ReposActivityTest {
+class AllReposActivityTest {
 
     private val mockWebServer = MockWebServer()
 
     @get:Rule
     val activityRule = ActivityTestRule(
-        ReposActivity::class.java,
+        AllReposActivity::class.java,
         true,
         false
     )
