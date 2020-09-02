@@ -29,7 +29,7 @@ class AllReposActivity : AppCompatActivity() {
     }
 
     private fun observeViewState() {
-        viewModel.reposResult.observe(this, Observer { response ->
+        viewModel.fetchRepos().observe(this, Observer { response ->
             when (response) {
                 is Success -> showRepos(response.data as ReposResponse)
                 is Error -> showError(response.error)

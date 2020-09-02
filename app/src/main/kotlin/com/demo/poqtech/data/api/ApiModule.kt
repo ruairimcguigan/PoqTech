@@ -1,7 +1,6 @@
 package com.demo.poqtech.data.api
 
 import android.app.Application
-import android.content.Context
 import com.demo.poqtech.BuildConfig.BASE_URL
 import com.demo.poqtech.data.connectivity.DefaultNetworkState
 import com.demo.poqtech.data.connectivity.NetworkState
@@ -43,5 +42,5 @@ class ApiModule {
         RepoService(repoApi)
 
     @Provides
-    fun provideNetworkStateCheck(): NetworkState = DefaultNetworkState()
+    fun provideNetworkStateCheck(app: Application): NetworkState = DefaultNetworkState(app.applicationContext)
 }

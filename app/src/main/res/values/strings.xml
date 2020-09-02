@@ -3,4 +3,7 @@
     <string name="repo_name_label">Name: %1$s</string>
     <string name="description_placeholder">Description: %1$s</string>
     <string name="watchers">Watchers</string>
+    <string name="no_repo_provided">No repo name provided</string>
+    <string name="no_description_provided">No description provided</string>
+    <string name="default_avatar_url">https://avatars0.githubusercontent.com/u/82592?s=200&amp;v=4</string>
 </resources>

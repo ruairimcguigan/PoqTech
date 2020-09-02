@@ -13,12 +13,5 @@ class RepoModule {
 
     @Provides fun provideDisposable() = RxDisposable()
 
-    @Provides
-    fun providesRepository(
-        reposService: RepoService,
-        scheduler: SchedulerProvider
-    ): Repository = DefaultRepository(
-        reposService,
-        scheduler
-    )
+    @Provides fun providesRepository(reposService: RepoService): Repository = DefaultRepository(reposService)
 }

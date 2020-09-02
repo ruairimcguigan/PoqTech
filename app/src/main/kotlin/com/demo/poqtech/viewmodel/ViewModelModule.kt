@@ -1,8 +1,9 @@
-package com.demo.poqtech
+package com.demo.poqtech.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.poqtech.allrepos.AllReposViewModel
+import com.demo.poqtech.viewmodel.ViewModelFactory.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

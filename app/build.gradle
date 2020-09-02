@@ -34,13 +34,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-//    sourceSets {
-//        androidTest.java.srcDirs += "src/androidTest/kotlin"
-//        debug.java.srcDirs += "src/debug/kotlin"
-//        main.java.srcDirs += "src/main/kotlin"
-//        test.java.srcDirs += "src/test/kotlin"
-//    }
-
     android.sourceSets.all {
         java.srcDir("src/$name/kotlin")
     }
@@ -105,4 +98,12 @@ dependencies {
     androidTestImplementation appTestDependencies.idlingResource
     androidTestImplementation appTestDependencies.androidRules
     androidTestImplementation appTestDependencies.androidTestRunner
+
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
+        // Necessary to avoid version conflicts
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
 }

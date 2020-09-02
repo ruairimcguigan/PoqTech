@@ -1,7 +1,5 @@
 package com.demo.poqtech.allrepos
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.demo.poqtech.data.api.ApiResponse
@@ -14,40 +12,41 @@ import com.demo.poqtech.data.api.ApiResponse.Companion.NOT_FOUND
 import com.demo.poqtech.data.api.ApiResponse.Error
 import com.demo.poqtech.data.api.ApiResponse.HttpErrors.*
 import com.demo.poqtech.data.api.ApiResponse.Loading
-import com.demo.poqtech.data.connectivity.DefaultNetworkState
 import com.demo.poqtech.data.connectivity.NetworkState
 import com.demo.poqtech.data.model.ReposResponse
 import com.demo.poqtech.data.repo.Repository
 import com.demo.poqtech.rx.RxDisposable
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 import javax.inject.Inject
 
 class AllReposViewModel @Inject constructor(
-    application: Application,
     private val repo: Repository,
     private val disposable: RxDisposable,
-    private val networkState: DefaultNetworkState
-) : AndroidViewModel(application) {
+    private val networkState: NetworkState
+) : ViewModel() {
 
-    val reposResult: MutableLiveData<ApiResponse> = MutableLiveData()
     val activeNetworkState: MutableLiveData<Boolean> = MutableLiveData()
+    private val reposResult: MutableLiveData<ApiResponse> = MutableLiveData()
 
-    init {
-        if (networkState.hasActiveState(application)) {
-            fetchRepos()
+    fun fetchRepos(): MutableLiveData<ApiResponse> {
+        if (networkState.hasActiveState()) {
+            disposable.add(
+                repo.getAllRepos()
+                    .doOnSubscribe { reposResult.postValue(Loading) }
+                    .subscribeOn(Schedulers.io())
+                    .subscribeWith(object : DisposableSingleObserver<Response<ReposResponse>>() {
+                        override fun onSuccess(response: Response<ReposResponse>) =
+                            if (response.isSuccessful) onFetchSuccess(response) else handleError(response)
+
+                        override fun onError(e: Throwable) = handleThrowable(e)
+                    })
+            )
         } else {
             activeNetworkState.value = false
         }
-    }
-
-    private fun fetchRepos() {
-        disposable.add(
-            repo.getAllRepos()
-                .doOnSubscribe { reposResult.postValue(Loading) }
-                .subscribeOn(Schedulers.io())
-                .subscribe{response -> if (response.isSuccessful) onFetchSuccess(response) else handleError(response)}
-        )
+        return reposResult
     }
 
     private fun onFetchSuccess(response: Response<ReposResponse>) {
@@ -64,6 +63,10 @@ class AllReposViewModel @Inject constructor(
             FOUND_REDIRECT -> reposResult.postValue(ResourceNotFound(response.message()))
             else -> reposResult.postValue(Error(response.message()))
         }
+    }
+
+    private fun handleThrowable(e: Throwable) {
+        reposResult.postValue(Error(error = e.localizedMessage))
     }
 
     override fun onCleared() {

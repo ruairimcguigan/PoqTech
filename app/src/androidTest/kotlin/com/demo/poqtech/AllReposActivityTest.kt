@@ -12,10 +12,7 @@ import androidx.test.rule.ActivityTestRule
 import com.demo.poqtech.allrepos.AllReposActivity
 import com.demo.poqtech.data.api.OkHttpProvider
 import com.jakewharton.espresso.OkHttp3IdlingResource
-import okhttp3.mockwebserver.Dispatcher
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
-import okhttp3.mockwebserver.RecordedRequest
+import okhttp3.mockwebserver.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -52,6 +49,7 @@ class AllReposActivityTest {
             override fun dispatch(request: RecordedRequest): MockResponse {
                 return MockResponse()
                     .setResponseCode(200)
+                    .setSocketPolicy(SocketPolicy.STALL_SOCKET_AT_START)
                     .setBody(ResponseReader.readJsonFromFile("mocked_success_response.json"))
             }
         }
@@ -73,10 +71,27 @@ class AllReposActivityTest {
 
         activityRule.launchActivity(null)
 
-        onView(withId(R.id.progressBar)).check(matches(withEffectiveVisibility(VISIBLE)))
+        onView(withId(R.id.progressBar)).check(matches(withEffectiveVisibility(GONE)))
         onView(withId(R.id.repoListView)).check(matches(withEffectiveVisibility(GONE)))
         onView(withId(R.id.noReposView)).check(matches(withEffectiveVisibility(VISIBLE)))
         onView(withId(R.id.noReposView)).check(matches(withText("No repos available")))
+    }
+
+    @Test
+    fun testNoNetworkState() {
+
+        mockWebServer.dispatcher = object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                return MockResponse().throttleBody(1024, 5, TimeUnit.SECONDS)
+            }
+        }
+
+        activityRule.launchActivity(null)
+
+        onView(withId(R.id.progressBar)).check(matches(withEffectiveVisibility(GONE)))
+        onView(withId(R.id.repoListView)).check(matches(withEffectiveVisibility(GONE)))
+        onView(withId(R.id.noReposView)).check(matches(withEffectiveVisibility(VISIBLE)))
+        onView(withId(R.id.noReposView)).check(matches(withText("Please check your connection")))
     }
 
     @After
