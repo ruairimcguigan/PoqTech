@@ -9,7 +9,7 @@ import javax.inject.Inject
 class DefaultNetworkState @Inject constructor(
     private val context: Context) : NetworkState {
 
-    override fun hasActiveState(): Boolean {
+    override fun isAvailable(): Boolean {
         var hasActiveConnectivity = false
         val connectivityManager =
             context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager

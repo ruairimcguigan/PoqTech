@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.0"
+    compileSdkVersion 28
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "com.demo.poqtech"
-        minSdkVersion 28
-        targetSdkVersion 30
+        minSdkVersion 24
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
 
@@ -45,7 +45,6 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.core:core-ktx:1.3.1'
     implementation appDependencies.lifecycleExtensions
     implementation appDependencies.viewmodelExtensions
@@ -98,12 +97,4 @@ dependencies {
     androidTestImplementation appTestDependencies.idlingResource
     androidTestImplementation appTestDependencies.androidRules
     androidTestImplementation appTestDependencies.androidTestRunner
-
-    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
-        // Necessary to avoid version conflicts
-        exclude group: 'com.android.support', module: 'appcompat'
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-    }
 }

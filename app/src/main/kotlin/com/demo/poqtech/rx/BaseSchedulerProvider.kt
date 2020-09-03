@@ -1,4 +1,4 @@
-package com.fruit.app.tech.main.util.schedulers
+package com.demo.poqtech.rx
 
 import io.reactivex.Scheduler
 

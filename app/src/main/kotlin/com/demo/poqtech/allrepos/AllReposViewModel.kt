@@ -31,14 +31,16 @@ class AllReposViewModel @Inject constructor(
     private val reposResult: MutableLiveData<ApiResponse> = MutableLiveData()
 
     fun fetchRepos(): MutableLiveData<ApiResponse> {
-        if (networkState.hasActiveState()) {
+        if (networkState.isAvailable()) {
             disposable.add(
                 repo.getAllRepos()
                     .doOnSubscribe { reposResult.postValue(Loading) }
                     .subscribeOn(Schedulers.io())
                     .subscribeWith(object : DisposableSingleObserver<Response<ReposResponse>>() {
+
                         override fun onSuccess(response: Response<ReposResponse>) =
-                            if (response.isSuccessful) onFetchSuccess(response) else handleError(response)
+                            if (response.isSuccessful) onFetchSuccess(response)
+                            else handleError(response)
 
                         override fun onError(e: Throwable) = handleThrowable(e)
                     })
@@ -49,20 +51,17 @@ class AllReposViewModel @Inject constructor(
         return reposResult
     }
 
-    private fun onFetchSuccess(response: Response<ReposResponse>) {
-        reposResult.postValue(ApiResponse.Success(response.body()))
-    }
+    private fun onFetchSuccess(response: Response<ReposResponse>)
+            = reposResult.postValue(ApiResponse.Success(response.body()))
 
-    private fun handleError(response: Response<ReposResponse>) {
-        when (response.code()) {
-            FORBIDDEN -> reposResult.postValue(Forbidden(response.message()))
-            NOT_FOUND -> reposResult.postValue(NotFound(response.message()))
-            INTERNAL_ERROR -> reposResult.postValue(InternalError(response.message()))
-            BAD_GATEWAY -> reposResult.postValue(BadGateway(response.message()))
-            MOVED -> reposResult.postValue(Removed(response.message()))
-            FOUND_REDIRECT -> reposResult.postValue(ResourceNotFound(response.message()))
-            else -> reposResult.postValue(Error(response.message()))
-        }
+    private fun handleError(response: Response<ReposResponse>) = when (response.code()) {
+        FORBIDDEN -> reposResult.postValue(Forbidden(FORBIDDEN.toString()))
+        NOT_FOUND -> reposResult.postValue(NotFound(response.message()))
+        INTERNAL_ERROR -> reposResult.postValue(InternalError(response.message()))
+        BAD_GATEWAY -> reposResult.postValue(BadGateway(response.message()))
+        MOVED -> reposResult.postValue(ResourceMoved(response.message()))
+        FOUND_REDIRECT -> reposResult.postValue(ResourceNotFound(response.message()))
+        else -> reposResult.postValue(Error(response.message()))
     }
 
     private fun handleThrowable(e: Throwable) {

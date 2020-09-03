@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit
 
 object OkHttpProvider {
 
-    // Timeout for the network requests
     private const val REQUEST_TIMEOUT = 3L
 
     private var okHttpClient: OkHttpClient? = null

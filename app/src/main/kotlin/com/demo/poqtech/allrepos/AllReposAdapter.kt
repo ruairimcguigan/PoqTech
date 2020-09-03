@@ -30,7 +30,8 @@ class AllReposAdapter : Adapter<AllRepoViewHolder>() {
     )
   }
 
-  override fun onBindViewHolder(holder: AllRepoViewHolder, position: Int) = holder.bind(context, repoList[position])
+  override fun onBindViewHolder(holder: AllRepoViewHolder, position: Int)
+          = holder.bind(context, repoList[position])
 
   override fun getItemCount() = repoList.size
 }

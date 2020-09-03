@@ -6,4 +6,11 @@
     <string name="no_repo_provided">No repo name provided</string>
     <string name="no_description_provided">No description provided</string>
     <string name="default_avatar_url">https://avatars0.githubusercontent.com/u/82592?s=200&amp;v=4</string>
+    <string name="resource_forbidden_error_message">Requested resource is forbidden for some reason</string>
+    <string name="not_found_error_message">Received Not found 404 error</string>
+    <string name="check_connection_message">Please check your connection</string>
+    <string name="bad_gateway_message">Bad response from that proxy server</string>
+    <string name="internal_error_message">Internal server error, please try again later</string>
+    <string name="resource_moved_error_message">Requested resource has been changed permanently</string>
+
 </resources>

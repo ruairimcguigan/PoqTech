@@ -6,7 +6,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface ReposApi {
-
     @GET("repos")
     fun fetchAllRepos() : Single<Response<ReposResponse>>
 }
