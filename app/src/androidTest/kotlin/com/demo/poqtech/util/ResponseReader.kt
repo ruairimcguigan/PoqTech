@@ -1,6 +1,7 @@
-package com.demo.poqtech
+package com.demo.poqtech.util
 
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import com.demo.poqtech.PoqTestApp
 import java.io.IOException
 import java.io.InputStreamReader
 
@@ -8,7 +9,7 @@ object ResponseReader {
 
     const val CHARSET = "UTF-8"
 
-    fun readJsonFromFile(fileName: String): String {
+    fun readJson(fileName: String): String {
         try {
             val inputStream = (getInstrumentation()
                 .targetContext
